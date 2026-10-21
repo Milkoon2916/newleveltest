@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: araxdna-leveltest
+    runtime: node
+    # free 플랜은 일정 시간 접속이 없으면 잠들어 첫 접속이 30~60초 느립니다.
+    # 학생들이 쓰는 시간대에 쾌적하게 쓰려면 starter 이상으로 올리세요.
+    plan: free
+    buildCommand: npm install --omit=dev
+    startCommand: npm start
+    healthCheckPath: /healthz
+    envVars:
+      - key: NODE_VERSION
+        value: 20
+      - key: DATABASE_URL        # Neon 연결 문자열 (Render 대시보드에서 직접 입력)
+        sync: false
+      - key: ADMIN_PASSWORD      # 관리자 페이지(/admin) 비밀번호 (Render 대시보드에서 직접 입력)
+        sync: false
+      - key: SESSION_SECRET      # 관리자 로그인 세션 서명 키 (자동 생성)
+        generateValue: true
