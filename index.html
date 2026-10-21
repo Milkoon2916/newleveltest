@@ -119,7 +119,10 @@
   .section-tab{
     font-size:0.76rem;padding:5px 12px;border-radius:20px;background:#EFE3F5;color:var(--ink-soft);font-weight:700;
   }
-  .section-tab.active{background:var(--purple);color:#fff;}
+  .section-tab{cursor:pointer;user-select:none;transition:background .12s;}
+  .section-tab:hover{background:#E2D0EE;}
+  .section-tab:focus-visible{outline:2px solid var(--purple-bright);outline-offset:2px;}
+  .section-tab.active{background:var(--purple);color:#fff;cursor:default;}
   .section-tab.done{background:#DCEEEA;color:var(--good);}
 
   .audio-dock{
@@ -224,6 +227,9 @@
   table.q-table td{padding:8px 12px;text-align:center;border:1px solid var(--line);background:#fff;}
   table.q-table tr:nth-child(even) td{background:#FAF5FC;}
 
+  .admin-link{font-size:0.78rem;color:var(--ink-soft);opacity:0.6;text-decoration:none;}
+  .admin-link:hover{opacity:1;text-decoration:underline;}
+
   /* ---------- result saving + admin ---------- */
   .save-row{margin-top:12px;font-size:0.84rem;color:var(--ink-soft);display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
   .save-row.ok{color:var(--good);}
@@ -269,6 +275,7 @@
     <input type="password" id="adminPw" autocomplete="current-password">
     <div class="admin-msg" id="adminLoginMsg"></div>
     <button class="btn block" id="adminLoginBtn">로그인</button>
+    <div style="text-align:center;margin-top:18px;"><a href="/" class="admin-link">← 시험 페이지로</a></div>
   </div>
 
   <!-- ================= ADMIN: LIST (/admin) ================= -->
@@ -307,6 +314,7 @@
 
     <div style="height:28px"></div>
     <button class="btn block" id="startBtn" disabled>시험 시작하기</button>
+    <div style="text-align:center;margin-top:22px;"><a href="/admin" class="admin-link">관리자</a></div>
   </div>
 
   <!-- ================= SCREEN 2: TEST ================= -->
@@ -792,14 +800,14 @@ const PHONICS = {
           { n:10, type:'fill', q:"d 의 대문자는?", answer:'D' },
         ]},
         { part: '첫 글자 완성하기', note: '단어의 첫 글자를 입력해 단어를 완성하세요.', questions: [
-          { n:11, type:'fill', q:"( _ )pple", answer:'a' },
-          { n:12, type:'fill', q:"( _ )ite  (kite)", answer:'k' },
-          { n:13, type:'fill', q:"( _ )gloo  (igloo)", answer:'i' },
-          { n:14, type:'fill', q:"( _ )ift  (lift)", answer:'l' },
-          { n:15, type:'fill', q:"( _ )oap  (soap)", answer:'s' },
-          { n:16, type:'fill', q:"( _ )ut  (hut)", answer:'h' },
-          { n:17, type:'fill', q:"( _ )et  (jet)", answer:'j' },
-          { n:18, type:'fill', q:"( _ )ery  (very)", answer:'v' },
+          { n:11, type:'fill', q:"( _ )pple  (사과)", answer:'a' },
+          { n:12, type:'fill', q:"( _ )ite  (연)", answer:'k' },
+          { n:13, type:'fill', q:"( _ )gloo  (이글루)", answer:'i' },
+          { n:14, type:'fill', q:"( _ )ift  (들어 올리다)", answer:'l' },
+          { n:15, type:'fill', q:"( _ )oap  (비누)", answer:'s' },
+          { n:16, type:'fill', q:"( _ )ut  (오두막)", answer:'h' },
+          { n:17, type:'fill', q:"( _ )et  (제트기)", answer:'j' },
+          { n:18, type:'fill', q:"( _ )ery  (매우)", answer:'v' },
         ]},
       ]
     },
@@ -819,21 +827,21 @@ const PHONICS = {
           { n:7, type:'mc', q:"We ______ bicycles. (두 사람이 자전거를 타는 그림)", choices:{A:'hide',B:'ride',C:'jump'}, answer:'B' },
           { n:8, type:'mc', q:"They ______ together. (가족이 함께 식사하는 그림)", choices:{A:'dance',B:'sleep',C:'eat'}, answer:'C' },
         ]},
-        { part: '올바른 철자 완성하기 (Dipthong & Digraph)', note: '흩어진 글자를 순서대로 클릭해 올바른 단어를 완성하세요.', questions: [
-          { n:9, type:'order', joinChar:'', chunks:['a','k','m','e'], prompt:'/meɪk/', answer:'make' },
-          { n:10, type:'order', joinChar:'', chunks:['r','p','a','e','l'], prompt:'/pɜːrl/', answer:'pearl' },
-          { n:11, type:'order', joinChar:'', chunks:['a','h','m'], prompt:'/hæm/', answer:'ham' },
-          { n:12, type:'order', joinChar:'', chunks:['n','k','i','g'], prompt:'/kɪŋ/', answer:'king' },
-          { n:13, type:'order', joinChar:'', chunks:['g','a','r','e','p'], prompt:'/ɡreɪp/', answer:'grape' },
-          { n:14, type:'order', joinChar:'', chunks:['a','t','e','p'], prompt:'/teɪp/', answer:'tape' },
-          { n:15, type:'order', joinChar:'', chunks:['u','m','e','t'], prompt:'/mjuːt/', answer:'mute' },
-          { n:16, type:'order', joinChar:'', chunks:['a','t','i','l'], prompt:'/teɪl/', answer:'tail' },
-          { n:17, type:'order', joinChar:'', chunks:['a','e','t'], prompt:'/iːt/', answer:'eat' },
-          { n:18, type:'order', joinChar:'', chunks:['o','g','a','t'], prompt:'/ɡoʊt/', answer:'goat' },
-          { n:19, type:'order', joinChar:'', chunks:['a','e','b','r'], prompt:'/beər/', answer:'bear' },
-          { n:20, type:'order', joinChar:'', chunks:['b','u','a','t','o'], prompt:'/əˈbaʊt/', answer:'about' },
-          { n:21, type:'order', joinChar:'', chunks:['h','o','w'], prompt:'/haʊ/', answer:'how' },
-          { n:22, type:'order', joinChar:'', chunks:['b','a','o','t'], prompt:'/boʊt/', answer:'boat' },
+        { part: '올바른 철자 완성하기 (Diphthong & Digraph)', note: '흩어진 글자를 순서대로 클릭해 올바른 단어를 완성하세요.', questions: [
+          { n:9, type:'order', joinChar:'', q:'다음 발음에 맞게 단어를 완성하세요.', chunks:['a','k','m','e'], prompt:'/meɪk/', answer:'make' },
+          { n:10, type:'order', joinChar:'', q:'다음 발음에 맞게 단어를 완성하세요.', chunks:['r','p','a','e','l'], prompt:'/pɜːrl/', answer:'pearl' },
+          { n:11, type:'order', joinChar:'', q:'다음 발음에 맞게 단어를 완성하세요.', chunks:['a','h','m'], prompt:'/hæm/', answer:'ham' },
+          { n:12, type:'order', joinChar:'', q:'다음 발음에 맞게 단어를 완성하세요.', chunks:['n','k','i','g'], prompt:'/kɪŋ/', answer:'king' },
+          { n:13, type:'order', joinChar:'', q:'다음 발음에 맞게 단어를 완성하세요.', chunks:['g','a','r','e','p'], prompt:'/ɡreɪp/', answer:'grape' },
+          { n:14, type:'order', joinChar:'', q:'다음 발음에 맞게 단어를 완성하세요.', chunks:['a','t','e','p'], prompt:'/teɪp/', answer:'tape' },
+          { n:15, type:'order', joinChar:'', q:'다음 발음에 맞게 단어를 완성하세요.', chunks:['u','m','e','t'], prompt:'/mjuːt/', answer:'mute' },
+          { n:16, type:'order', joinChar:'', q:'다음 발음에 맞게 단어를 완성하세요.', chunks:['a','t','i','l'], prompt:'/teɪl/', answer:'tail' },
+          { n:17, type:'order', joinChar:'', q:'다음 발음에 맞게 단어를 완성하세요.', chunks:['a','e','t'], prompt:'/iːt/', answer:'eat' },
+          { n:18, type:'order', joinChar:'', q:'다음 발음에 맞게 단어를 완성하세요.', chunks:['o','g','a','t'], prompt:'/ɡoʊt/', answer:'goat' },
+          { n:19, type:'order', joinChar:'', q:'다음 발음에 맞게 단어를 완성하세요.', chunks:['a','e','b','r'], prompt:'/beər/', answer:'bear' },
+          { n:20, type:'order', joinChar:'', q:'다음 발음에 맞게 단어를 완성하세요.', chunks:['b','u','a','t','o'], prompt:'/əˈbaʊt/', answer:'about' },
+          { n:21, type:'order', joinChar:'', q:'다음 발음에 맞게 단어를 완성하세요.', chunks:['h','o','w'], prompt:'/haʊ/', answer:'how' },
+          { n:22, type:'order', joinChar:'', q:'다음 발음에 맞게 단어를 완성하세요.', chunks:['b','a','o','t'], prompt:'/boʊt/', answer:'boat' },
         ]},
       ]
     },
@@ -842,11 +850,11 @@ const PHONICS = {
       title: 'Writing',
       groups: [
         { part: '단어 완성하기', note: '흩어진 글자를 순서대로 클릭해 단어를 완성하세요.', questions: [
-          { n:1, type:'order', joinChar:'', chunks:['a','b','k','e'], prompt:'단어를 완성하세요.', answer:'bake' },
-          { n:2, type:'order', joinChar:'', chunks:['c','u','l','o','d'], prompt:'단어를 완성하세요.', answer:'cloud' },
-          { n:3, type:'order', joinChar:'', chunks:['d','i','e','c'], prompt:'단어를 완성하세요.', answer:'dice' },
-          { n:4, type:'order', joinChar:'', chunks:['s','h','u','o','t'], prompt:'단어를 완성하세요.', answer:'shout' },
-          { n:5, type:'order', joinChar:'', chunks:['t','h','e','r','e'], prompt:'단어를 완성하세요.', answer:'three' },
+          { n:1, type:'order', joinChar:'', q:'다음 뜻에 맞게 단어를 완성하세요.', chunks:['a','b','k','e'], prompt:'굽다', answer:'bake' },
+          { n:2, type:'order', joinChar:'', q:'다음 뜻에 맞게 단어를 완성하세요.', chunks:['c','u','l','o','d'], prompt:'구름', answer:'cloud' },
+          { n:3, type:'order', joinChar:'', q:'다음 뜻에 맞게 단어를 완성하세요.', chunks:['d','i','e','c'], prompt:'주사위', answer:'dice' },
+          { n:4, type:'order', joinChar:'', q:'다음 뜻에 맞게 단어를 완성하세요.', chunks:['s','h','u','o','t'], prompt:'소리치다', answer:'shout' },
+          { n:5, type:'order', joinChar:'', q:'다음 뜻에 맞게 단어를 완성하세요.', chunks:['t','h','e','r','e'], prompt:'숫자 3', answer:'three' },
         ]},
         { part: '문장 완성하기', note: '단어를 순서에 맞게 클릭하여 올바른 문장을 완성하세요.', questions: [
           { n:6, type:'order', chunks:['is','A boat','in the sea.'], prompt:'문장을 완성하세요.', answer:'A boat is in the sea.' },
@@ -1570,6 +1578,20 @@ const TESTS = { elem_mid: MOVERS, elem_low: STARTERS, elem_high: FLYERS, phonics
       const span = document.createElement('span');
       span.className = 'section-tab' + (sec.id === item.sectionId ? ' active' : '');
       span.textContent = sec.title;
+      // 영역 탭 클릭 → 그 영역의 첫 문제로 바로 이동
+      span.setAttribute('role', 'button');
+      span.tabIndex = 0;
+      span.title = sec.title + ' 영역으로 이동';
+      const goSection = () => {
+        if (sec.id === items[cur].sectionId) return;
+        const idx = items.findIndex(it => it.sectionId === sec.id);
+        if (idx < 0) return;
+        cur = idx;
+        renderItem();
+        window.scrollTo({ top: 0, behavior: 'instant' });
+      };
+      span.addEventListener('click', goSection);
+      span.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); goSection(); } });
       tabs.appendChild(span);
     });
 
@@ -1577,6 +1599,7 @@ const TESTS = { elem_mid: MOVERS, elem_low: STARTERS, elem_high: FLYERS, phonics
     const dock = $('audioDock');
     if (testData.hasListening) {
       dock.classList.toggle('hidden', item.sectionId !== 'listening');
+      if (item.sectionId !== 'listening') { try { $('listeningAudio').pause(); } catch (e) {} }
     }
   }
 
@@ -1711,7 +1734,7 @@ const TESTS = { elem_mid: MOVERS, elem_low: STARTERS, elem_high: FLYERS, phonics
       ta.addEventListener('input', () => { answers[key] = ta.value; });
       box.appendChild(ta);
     } else if (q.type === 'order'){
-      title.textContent = `${q.n}. 다음 뜻에 맞게 문장을 완성하세요.`;
+      title.textContent = `${q.n}. ${q.q || '다음 뜻에 맞게 문장을 완성하세요.'}`;
       const prompt = document.createElement('div');
       prompt.className = 'order-prompt';
       prompt.textContent = '"' + q.prompt + '"';
