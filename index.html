@@ -218,6 +218,12 @@
     .wrap{max-width:100%;}
   }
 
+  .q-table-wrap{overflow-x:auto;margin-top:12px;font-weight:400;}
+  table.q-table{border-collapse:collapse;width:100%;max-width:520px;font-size:0.92rem;}
+  table.q-table th{background:var(--purple);color:#fff;padding:8px 12px;text-align:center;font-weight:700;}
+  table.q-table td{padding:8px 12px;text-align:center;border:1px solid var(--line);background:#fff;}
+  table.q-table tr:nth-child(even) td{background:#FAF5FC;}
+
   /* ---------- result saving + admin ---------- */
   .save-row{margin-top:12px;font-size:0.84rem;color:var(--ink-soft);display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
   .save-row.ok{color:var(--good);}
@@ -876,7 +882,7 @@ const TYPE_A = {
           { n:7, q:"대화를 듣고, 남자가 보고서를 완성하지 못한 이유를 고르시오.", choices:{A:"실험을 다시 해서",B:"제출일을 착각해서",C:"주제가 변경되어서",D:"컴퓨터가 고장 나서",E:"심한 감기에 걸려서"}, answer:"A" },
           { n:8, q:"대화를 듣고, Spring Virtual Run에 관해 언급되지 않은 것을 고르시오.", choices:{A:"달리는 거리",B:"참가 인원",C:"달리는 장소",D:"참가비",E:"기념품"}, answer:"B" },
           { n:9, q:"Family Night at the Museum에 관한 다음 내용을 듣고, 일치하지 않는 것을 고르시오.", choices:{A:"박물관 정규 운영 시간 종료 후에 열린다.",B:"행성과 별 모형 아래에서 잠을 잔다.",C:"참가자들에게 침낭이 제공된다.",D:"6세부터 13세까지를 위한 프로그램이다.",E:"사전 등록 없이 현장에서 참가할 수 있다."}, answer:"E" },
-          { n:10, q:"다음 표를 보면서 대화를 듣고, 여자가 구매할 스마트 워치를 고르시오. (Model / Waterproof / Warranty / Price) A: O, 2 years, $90 / B: O, 3 years, $110 / C: O, 1 year, $115 / D: X, 2 years, $120 / E: O, 4 years, $125", choices:{A:"Model A",B:"Model B",C:"Model C",D:"Model D",E:"Model E"}, answer:"B" },
+          { n:10, q:"다음 표를 보면서 대화를 듣고, 여자가 구매할 스마트 워치를 고르시오.<div class='q-table-wrap'><table class='q-table'><tr><th>Model</th><th>Waterproof</th><th>Warranty</th><th>Price</th></tr><tr><td>A</td><td>O</td><td>2 years</td><td>$90</td></tr><tr><td>B</td><td>O</td><td>3 years</td><td>$110</td></tr><tr><td>C</td><td>O</td><td>1 year</td><td>$115</td></tr><tr><td>D</td><td>X</td><td>2 years</td><td>$120</td></tr><tr><td>E</td><td>O</td><td>4 years</td><td>$125</td></tr></table></div>", choices:{A:"Model A",B:"Model B",C:"Model C",D:"Model D",E:"Model E"}, answer:"B" },
         ]},
       ]
     },
